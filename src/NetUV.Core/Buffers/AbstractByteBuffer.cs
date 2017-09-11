@@ -1218,11 +1218,12 @@ namespace NetUV.Core.Buffers
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected void CheckReadableBytes(int minimumReadableBytes)
         {
             if (minimumReadableBytes < 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(minimumReadableBytes), $"minimumReadableBytes: {minimumReadableBytes} (expected: >= 0)");
+                ThrowHelper.ThrowArgumentOutOfRangeException(nameof(minimumReadableBytes), $"minimumReadableBytes: {minimumReadableBytes} (expected: >= 0)");
             }
 
             this.CheckReadableBytes0(minimumReadableBytes);
@@ -1237,12 +1238,13 @@ namespace NetUV.Core.Buffers
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         void CheckReadableBytes0(int minimumReadableBytes)
         {
             this.EnsureAccessible();
             if (this.readerIndex > this.writerIndex - minimumReadableBytes)
             {
-                throw new IndexOutOfRangeException($"readerIndex({this.readerIndex}) + length({minimumReadableBytes}) exceeds writerIndex({this.writerIndex}): {this}");
+                ThrowHelper.ThrowIndexOutOfRangeException($"readerIndex({this.readerIndex}) + length({minimumReadableBytes}) exceeds writerIndex({this.writerIndex}): {this}");
             }
         }
 

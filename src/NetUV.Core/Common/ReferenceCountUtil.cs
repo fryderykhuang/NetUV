@@ -73,7 +73,10 @@ namespace NetUV.Core.Common
             }
             catch (Exception ex)
             {
-                Logger.Warn(msg, ex);
+                if (Logger.IsWarnEnabled)
+                {
+                    Logger.Warn(msg, ex);
+                }
             }
         }
 
@@ -100,7 +103,10 @@ namespace NetUV.Core.Common
             }
             catch (Exception ex)
             {
-                Logger.Warn(msg, ex);
+                if (Logger.IsWarnEnabled)
+                {
+                    Logger.Warn(msg, ex);
+                }
             }
         }
 
@@ -112,7 +118,10 @@ namespace NetUV.Core.Common
             }
             catch (Exception ex)
             {
-                Logger.Warn(msg, ex);
+                if (Logger.IsWarnEnabled)
+                {
+                    Logger.Warn(msg, ex);
+                }
             }
         }
     }

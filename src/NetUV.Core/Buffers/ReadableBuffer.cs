@@ -6,6 +6,7 @@ namespace NetUV.Core.Buffers
     using System;
     using System.Diagnostics.Contracts;
     using System.Text;
+    using NetUV.Core.Common;
 
     public struct ReadableBuffer : IDisposable
     {
@@ -92,14 +93,6 @@ namespace NetUV.Core.Buffers
 
         public void ReadBytes(byte[] destination, int length) => this.buffer.ReadBytes(destination, 0, length);
 
-        public void Dispose()
-        {
-            // It is possible for the consumers to release
-            // the buffer
-            if (this.buffer.ReferenceCount > 0)
-            {
-                this.buffer.Release();
-            }
-        }
+        public void Dispose() => this.buffer.SafeRelease();
     }
 }
